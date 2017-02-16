@@ -1,0 +1,23 @@
+{
+  "name": "projectv",
+  "version": "0.0.1-alpha0",
+  "description": "projectV",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mukeshm/projectV.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mukeshm/projectV/issues"
+  },
+  "homepage": "https://github.com/mukeshm/projectV#readme",
+  "devDependencies": {
+    "electron": "^1.4.15"
+  }
+}
