@@ -5,12 +5,20 @@ import { IndexLink, Link ,hashHistory} from 'react-router'
 export default class Home extends Component {
 componentWillMount () {
     this.setState({
-        coursename: '123'
+        coursename: '',
+        courseduration: '',
+        coursestartdate: '',
+        description: ''
     })
 }
 sendData(){
+    if(this.state.coursename === '' || this.state.courseduration === '' || this.state.coursestartdate==='' || this.state.description===''){
+        alert("Please Fill All the Details")
+    }
+    else{
     console.log(this.state.coursename)
  hashHistory.push('/dashboard/'+this.state.coursename)
+    }
 }
 
 render(){
@@ -20,7 +28,7 @@ render(){
     </Link>
     <h1>Add Course</h1>
     <div className="addCourseForm">
-        <input type="text" placeholder="Course Name" name="coursename" onChange={e => this.setState({coursename : e.target.value})} />
+        <input type="text" placeholder="Course Name" required name="coursename" onChange={e => this.setState({coursename : e.target.value})} />
         <br/>
         <input type="number" placeholder="Duration" name="courseduration" onChange={e => this.setState({courseduration : e.target.value})} />
         <br/>
