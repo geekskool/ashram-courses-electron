@@ -1,0 +1,28 @@
+html, body{
+    height: 100%;
+}
+body{
+background-color: #34495e;
+overflow:hidden;
+
+}
+.container{
+    margin: auto;
+    background: #fefefe;
+    width: 70%;
+    height:80%;
+    border-radius: 10px;
+    padding: 30px; 
+    margin-top: 2%;
+}
+addCourseForm{
+    margin: auto;
+}
+.addCourseForm input {
+    margin: 10px;
+    width: 300px;
+    height: 30px;
+}
+.button{
+    margin: 10px;
+}
