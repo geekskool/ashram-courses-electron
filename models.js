@@ -14,7 +14,16 @@ const newStudent = () => ({
     roomNo : ""
 })
 
+const newTransaction = () => ({
+    type : "",
+    name : "",
+    count : 1,
+    rate : 0,
+    total : 0,
+    date : ""
+})
 module.exports = {
     newCourse,
-    newStudent
+    newStudent,
+    newTransaction
 }
