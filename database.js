@@ -13,11 +13,8 @@ class DB {
 
     getCourses(){
 	const db = this.db
-	let courses = []
 	let keys = Object.keys(db)
-	for (let key in keys){
-	    courses.push(db[key])
-	}
+	const courses = keys.map(key => db[key])
 	return courses
     }
     

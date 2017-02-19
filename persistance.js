@@ -50,5 +50,6 @@ module.exports = {
   'getStudents': getStudents,
   'addStudents': addStudents,
   'getStudentPurchases': getStudentPurchases,
-  'addStudentPurchase': addStudentPurchase
+  'addStudentPurchase': addStudentPurchase,
+  'getCourses' : getCourses
 }

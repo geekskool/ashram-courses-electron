@@ -28,3 +28,8 @@ ipcMain.on('addcourse', (event, arg) => {
   const courseID = pers.createCourse(arg)
   event.returnValue = courseID
 })
+
+ipcMain.on('getcourses', (event) => {
+  const courses = pers.getCourses()
+  event.returnValue = courses
+})
