@@ -26,19 +26,19 @@ devServer: {
 module: {
     loaders:[
         {
-loader:'babel',
-test:/\.jsx?/,
-exclude:/node_module/
+            loader:'babel',
+            test:/\.jsx?/,
+            exclude:/node_module/
         },
     {
-        test: /\.js$/,
+        test: /\.js?/,
         loader:'babel-loader',
         exclude: /node_module/
     }
     ]
 },
-
 plugins:[
     new webpack.HotModuleReplacementPlugin()
-    ]
+    ],
+    target: "electron"
 }

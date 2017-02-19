@@ -3,7 +3,7 @@ import {render} from 'react-dom'
 import { IndexLink, Link ,hashHistory} from 'react-router'
 import {ipcRenderer} from 'electron'
 
-export default class AddCourse extends Component {
+export default class AddPurchase extends Component {
 componentWillMount () {
     this.setState({
         coursename: '',
@@ -30,8 +30,8 @@ sendData(){
 
 render(){
     return (<div className="container">
-     <button className="buttons" onClick={() => hashHistory.push('/')}>Home</button>
-    <h1>Add Course</h1>
+         <button className="buttons" onClick={() => hashHistory.push('/')}>Home</button>
+    <h1>Add Purchase</h1>
     <div className="addCourseForm">
         <input type="text" className="inputText" placeholder="Course Name" name="coursename" onChange={e => this.setState({coursename : e.target.value})} />
         <br/>
@@ -40,8 +40,8 @@ render(){
         <input type="date" className="inputText" placeholder="Start Date" name="coursestartdate" onChange={e => this.setState({coursestartdate : e.target.value})}/>
         <br/>
         <input type="text" className="inputText" placeholder="Description" name="description" onChange={e => this.setState({description : e.target.value})}/>
-        <br/>   
-        <button className="buttons" onClick={this.sendData.bind(this)}>Submit</button>    
+        <br/>
+    <button className="buttons" onClick={this.sendData.bind(this)}>Submit</button>     
     </div>
     </div>)
 }
