@@ -11,6 +11,16 @@ class DB {
 	return courseID
     }
 
+    getCourses(){
+	const db = this.db
+	let courses = []
+	let keys = Object.keys(db)
+	for (let key in keys){
+	    courses.push(db[key])
+	}
+	return courses
+    }
+    
     getCourse(courseID){
 	let course = this.db[courseID]
 	return course === undefined ? null : course

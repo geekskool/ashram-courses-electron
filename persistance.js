@@ -18,6 +18,10 @@ const createCourse = function (course) {
   return courseID
 }
 
+const getCourses = function(){
+    return db.getCourses()
+}
+
 const getStudents = function (courseID) {
   // get students of courseID
   console.log('getting students ...')
