@@ -9,6 +9,7 @@ const newCourse = () => ({
 })
 
 const newStudent = () => ({
+    studentID: "",
     name : "",
     new : true,
     deposit : 0,

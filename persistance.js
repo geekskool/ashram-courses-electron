@@ -23,16 +23,16 @@ const getCourses = function(){
 }
 
 const getStudents = function (courseID) {
-  // get students of courseID
-  console.log('getting students ...')
-  console.log('got courseID ', courseID)
-  return [1, 2, 3]
+  return db.getStudents(courseID)
 }
 
-const addStudents = function (courseID, student) {
-  // add student to db
-  console.log('successfully added student')
-  return true
+const addStudent = function (courseID, student) {
+  const st = models.newStudent()
+    st.name = student.name
+    st.deposit = student.deposit,
+    st.roomNo = student.roomNo
+  const studentID = db.addStudent(courseID,st)
+  return studentID
 }
 
 const getStudentPurchases = function (studentID) {
@@ -48,7 +48,7 @@ module.exports = {
   'init': init,
   'createCourse': createCourse,
   'getStudents': getStudents,
-  'addStudents': addStudents,
+  'addStudent': addStudent,
   'getStudentPurchases': getStudentPurchases,
   'addStudentPurchase': addStudentPurchase,
   'getCourses' : getCourses

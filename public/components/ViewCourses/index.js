@@ -1,12 +1,22 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import { IndexLink, Link,hashHistory } from 'react-router'
+import {ipcRenderer} from 'electron'
 
 export default class ViewCourses extends Component {
+componentWillMount(){
+    const courses = ipcRenderer.sendSync('getcourses') 
+    this.setState({courses})
+}
+
 handleClick(e){
     hashHistory.push('/dashboard/'+e)
 }
-
+showCourses(){
+    console.log(this.state.courses)
+    const that = this
+    
+}
 render(){
     return (<div className="container">
      <button className="buttons" onClick={() => hashHistory.push('/')}>Home</button>
@@ -22,28 +32,10 @@ render(){
     </tr>
     </thead>
     <tbody>
+    {this.state.courses.map(function(crs){
+        return (<h1 onClick={()=> hashHistory.push(`/dashboard/${crs.courseID}`)}>{crs.courseID}</h1>)
 
-    <tr onClick={this.handleClick.bind(this,"123")}>
-    <td>John Snow</td>
-    <td>12-34-5678</td>
-    <td>21-43-8765</td>
-    <td>10</td>
-    <td>Tapatap</td>
-    </tr>
-    <tr onClick={this.handleClick.bind(this,"456")}>
-     <td>Hodor</td>
-    <td>Hodor</td>
-    <td>Hodor</td>
-    <td>Hodor</td>
-    <td>Hodor</td>
-    </tr>
-     <tr onClick={this.handleClick.bind(this,"789")}>
-    <td>I am Groot</td>
-    <td>I am Groot</td>
-    <td>I am Groot</td>
-    <td>I am Groot</td>
-    <td>I am Groot</td>
-    </tr>
+})}
     </tbody>
     </table>
     </div>

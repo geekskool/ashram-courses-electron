@@ -1,10 +1,13 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import { IndexLink, Link,hashHistory } from 'react-router'
+import {ipcRenderer} from 'electron'
 
 export default class Home extends Component {
 componentWillMount(){
-console.log(this.props.params.id)
+ const students = ipcRenderer.sendSync('getstudents',this.props.params.id) 
+this.setState({students})
+console.log(students)
 }
 handleClick(e){
     hashHistory.push('/viewstudent/'+e)
@@ -51,7 +54,7 @@ render(){
     </table>
     </div>
     <br/>
-     <button className="buttons" onClick={() => hashHistory.push('/addstudent')}>Add Student</button>
+     <button className="buttons" onClick={() => hashHistory.push(`/addstudent/${this.props.params.id}`)}>Add Student</button>
     </div>)
 }
 }

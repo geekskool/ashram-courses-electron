@@ -15,7 +15,15 @@ componentWillMount () {
     })
 }
 sendData(){
-   hashHistory.push('/dashboard/1234')
+    let obj = {
+        name: this.state.studentname,
+        deposit: this.state.deposit,
+        roomNo: this.state.roomno,
+        courseID: this.props.params.id
+    }
+    console.log(obj)
+    const studentID = ipcRenderer.sendSync('addstudent', obj) 
+        hashHistory.push(`/dashboard/${this.props.params.id}`)
 }
 
 render(){
@@ -41,7 +49,7 @@ render(){
         <br/> 
         <input type="number" className="inputText" min="0" placeholder="Deposit" onChange={e => this.setState({deposit : e.target.value})}/>
         <br/>
-            <button className="buttons selectField" onClick={this.sendData.bind(this)}>Add Student</button>    
+        <button className="buttons selectField" onClick={this.sendData.bind(this)}>Add Student</button>    
     </div>
     </div>)
 }

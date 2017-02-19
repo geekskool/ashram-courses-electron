@@ -33,3 +33,14 @@ ipcMain.on('getcourses', (event) => {
   const courses = pers.getCourses()
   event.returnValue = courses
 })
+
+
+ipcMain.on('getstudents', (event,arg) => {
+  const students = pers.getStudents(arg)
+  event.returnValue = students
+})
+
+ipcMain.on('addstudent', (event, arg) => {
+  const studentID = pers.addStudent(arg.courseID, arg)
+  event.returnValue = studentID
+})

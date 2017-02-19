@@ -17,7 +17,7 @@ render(<Router history={hashHistory}>
     <Route path='/addcourse' component={AddCourse} />
     <Route path='/viewcourses' component={ViewCourses} />
     <Route path='/dashboard/:id' component={Dashboard} />
-    <Route path='/addstudent' component={AddStudent} />
+    <Route path='/addstudent/:id' component={AddStudent} />
     <Route path='/viewstudent/:id' component={ViewStudent} />
     <Route path='/addpurchase' component={AddPurchase} />
     </Router>

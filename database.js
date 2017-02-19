@@ -24,11 +24,12 @@ class DB {
     }
 
     addStudent(courseID, student){
+		let studentID = uuid.v4()
+		student.studentID = studentID
     	let course = this.getCourse(courseID)
     	if (course !== null){
-    	    let {name} = student
-	    course.students[name] = student
-	    return name
+	    course.students[studentID] = student
+	    return studentID
     	}
     	return null
     } 
@@ -45,7 +46,10 @@ class DB {
     getStudents(courseID){
 	let course = this.getCourse(courseID)
 	if (course !== null){
-	    return course.students
+		let students = course.students
+		let keys = Object.keys(students)
+		const sds = keys.map(key => students[key])
+	    return sds
 	}
 	return null
     }
