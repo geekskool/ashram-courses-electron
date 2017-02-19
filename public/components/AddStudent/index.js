@@ -29,7 +29,6 @@ sendData(){
 render(){
     return (<div className="container">
     <button className="buttons" onClick={() => hashHistory.push('/')}>Home</button>
-    <button className="buttons" onClick={() => hashHistory.push('/dashboard/1234')}>Back</button>
     <h1>Add Student</h1>
     <div className="addCourseForm">
         <input type="text" className="inputText" placeholder="Student Name" onChange={e => this.setState({studentname : e.target.value})} />

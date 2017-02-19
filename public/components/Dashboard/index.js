@@ -5,7 +5,7 @@ import {ipcRenderer} from 'electron'
 
 export default class Home extends Component {
 componentWillMount(){
- const students = ipcRenderer.sendSync('getstudents',this.props.params.id) 
+const students = ipcRenderer.sendSync('getstudents',this.props.params.id) 
 this.setState({students})
 console.log(students)
 }
@@ -20,16 +20,19 @@ render(){
     <thead>
     <tr>
     <th>Name</th>
-    <th>Age</th>
-    <th>Gender</th>
     <th>Room No.</th>
-    <th>Purchases/Laundry</th>
+     <th>Deposit</th>
     </tr>
     </thead>
     <tbody>
 
     {this.state.students.map(function(stdnt){
-        return (<tr onClick={()=> hashHistory.push(`/viewstudent/${stdnt.studentID}/${that.props.params.id}`)}>{stdnt.studentID}</tr>)
+        return (
+            <tr key={stdnt.studentID} onClick={()=> hashHistory.push(`/viewstudent/${stdnt.studentID}/${that.props.params.id}`)}>
+                <td>{stdnt.name}</td>
+                <td>{stdnt.roomNo}</td>
+                <td>{stdnt.deposit}</td>
+                </tr>)
 
 })}
 

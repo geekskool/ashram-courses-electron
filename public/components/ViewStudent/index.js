@@ -17,7 +17,6 @@ componentWillMount(){
 render(){
     return (<div className="container">
     <button className="buttons" onClick={() => hashHistory.push('/')}>Home</button>
-    <button className="buttons" onClick={() => hashHistory.push('/dashboard/123')}>Back</button>
     <div className="tablelist">
     <table style={{width:'100%'}}>
     <thead>
@@ -30,7 +29,15 @@ render(){
     </tr>
     </thead>
     <tbody>
-    {this.state.purchases ? this.state.purchases.map(txn => (<tr>{txn.txnID}</tr>)) : null}
+    {this.state.purchases ? this.state.purchases.map(txn => (
+        <tr key={txn.txnID}>
+            <td>{txn.name}</td>
+            <td>{txn.date}</td>
+            <td>{txn.count}</td>
+            <td>{txn.rate}</td>
+            <td>{txn.total}</td>
+            </tr>
+        )) : null}
     </tbody>
     </table>
     </div>

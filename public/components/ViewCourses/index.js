@@ -14,6 +14,7 @@ handleClick(e){
 }
 
 render(){
+    console.log(this.state)
     return (<div className="container">
      <button className="buttons" onClick={() => hashHistory.push('/')}>Home</button>
     <div className="tablelist">
@@ -29,7 +30,14 @@ render(){
     </thead>
     <tbody>
     {this.state.courses.map(function(crs){
-        return (<tr onClick={()=> hashHistory.push(`/dashboard/${crs.courseID}`)}>{crs.courseID}</tr>)
+        return (
+            <tr key={crs.courseID} onClick={()=> hashHistory.push(`/dashboard/${crs.courseID}`)}>
+                <td>{crs.name}</td>
+                <td>{crs.startDate}</td>
+                <td>{crs.endDate}</td>
+                <td>{crs.duration}</td>
+                <td>{crs.description}</td>
+                </tr>)
 
 })}
     </tbody>
