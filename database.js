@@ -58,18 +58,24 @@ class DB {
 	let course = this.getCourse(courseID)
 	if (course !== null){
 	    let student = course.students[studentID]
-	    return student === undefined ? null : student["transactions"]
+		let txns = student["transactions"]
+	    let keys = Object.keys(txns)
+		const txnn = keys.map(key => txns[key])
+	    return txnn
+		
 	}
 	return null	
     }
 
     addStudentTransaction(courseID, studentID, transaction){
+	let txnID = uuid.v4()
+	transaction.txnID = txnID
 	let student = this.getStudent(courseID, studentID)
 	if (student !== null){
-	    student.transactions.push(transaction)
-	    return true
+	    student.transactions[txnID] = transaction
+	    return txnID
 	}
-	return false	
+	return null	
     }
     
     print(str){

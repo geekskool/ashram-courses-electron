@@ -35,13 +35,20 @@ const addStudent = function (courseID, student) {
   return studentID
 }
 
-const getStudentPurchases = function (studentID) {
-  // get all purchases for studentID
-  return [1, 2, 3, 4]
+const getStudentPurchases = function (courseID, studentID) {
+  return db.getStudentTransactions(courseID, studentID)
 }
 
-const addStudentPurchase = function (studentID, purchase) {
-  // add purchase to student with studentID
+const addPurchase = function (courseID, studentID, purchase) {
+  const txn = models.newTransaction()
+  txn.type = purchase.type
+  txn.name = purchase.name
+  txn.date = purchase.date
+  txn.count = purchase.count
+  txn.rate = purchase.rate
+  txn.total = purchase.total
+  const txnID = db.addStudentTransaction(courseID, studentID, txn)
+  return txnID
 }
 
 module.exports = {
@@ -50,6 +57,6 @@ module.exports = {
   'getStudents': getStudents,
   'addStudent': addStudent,
   'getStudentPurchases': getStudentPurchases,
-  'addStudentPurchase': addStudentPurchase,
+  'addPurchase': addPurchase,
   'getCourses' : getCourses
 }

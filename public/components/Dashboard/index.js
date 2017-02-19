@@ -9,10 +9,9 @@ componentWillMount(){
 this.setState({students})
 console.log(students)
 }
-handleClick(e){
-    hashHistory.push('/viewstudent/'+e)
-}
+
 render(){
+    const that = this
     return (<div className="container">
      <button className="buttons" onClick={() => hashHistory.push('/')}>Home</button>
        <h1>Dashboard</h1>
@@ -29,27 +28,11 @@ render(){
     </thead>
     <tbody>
 
-    <tr onClick={this.handleClick.bind(this,"123")}>
-    <td>John Snow</td>
-    <td>22</td>
-    <td>Male</td>
-    <td>B23</td>
-    <td>Link</td>
-    </tr>
-    <tr onClick={this.handleClick.bind(this,"456")}>
-     <td>Hodor</td>
-    <td>Hodor</td>
-    <td>Hodor</td>
-    <td>Hodor</td>
-    <td>Hodor</td>
-    </tr>
-    <tr onClick={this.handleClick.bind(this,"789")}>
-    <td>I am Groot</td>
-    <td>I am Groot</td>
-    <td>I am Groot</td>
-    <td>I am Groot</td>
-    <td>I am Groot</td>
-    </tr>
+    {this.state.students.map(function(stdnt){
+        return (<tr onClick={()=> hashHistory.push(`/viewstudent/${stdnt.studentID}/${that.props.params.id}`)}>{stdnt.studentID}</tr>)
+
+})}
+
     </tbody>
     </table>
     </div>

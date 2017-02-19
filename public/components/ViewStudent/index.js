@@ -1,9 +1,19 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import { IndexLink, Link,hashHistory } from 'react-router'
+import {ipcRenderer} from 'electron'
 
 export default class ViewStudent extends Component {
+componentWillMount(){
+    let obj = {
+        courseID : this.props.params.cid,
+        studentID : this.props.params.sid
+    }
+    const purchases = ipcRenderer.sendSync('getpurchases',obj) 
+    console.log(purchases)
+    this.setState({purchases})
 
+}
 render(){
     return (<div className="container">
     <button className="buttons" onClick={() => hashHistory.push('/')}>Home</button>
@@ -20,34 +30,12 @@ render(){
     </tr>
     </thead>
     <tbody>
-
-    <tr>
-    <td>Soap</td>
-    <td>12-34-5678</td>
-    <td>5</td>
-    <td>20</td>
-    <td>100</td>
-    </tr>
-   
-    <tr>
-    <td>Laundry</td>
-    <td>15-34-5678</td>
-    <td>5</td>
-    <td>10</td>
-    <td>50</td>
-    </tr>
-    <tr>
-    <td>Toothpaste</td>
-    <td>30-34-5678</td>
-    <td>1</td>
-    <td>50</td>
-    <td>50</td>
-    </tr>
+    {this.state.purchases ? this.state.purchases.map(txn => (<tr>{txn.txnID}</tr>)) : null}
     </tbody>
     </table>
     </div>
     <br/>
-    <button className="buttons" onClick={() => hashHistory.push('/addpurchase')}>Add Purchase</button>
+    <button className="buttons" onClick={() => hashHistory.push(`/addpurchase/${this.props.params.cid}/${this.props.params.sid}`)}>Add Purchase</button>
     </div>)
 }
 }

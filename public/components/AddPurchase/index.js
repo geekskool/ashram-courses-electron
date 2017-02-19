@@ -6,6 +6,7 @@ import {ipcRenderer} from 'electron'
 export default class AddPurchase extends Component {
 componentWillMount () {
     this.setState({
+        type:'purchase',
         name: '',
         total: '',
         date: '',
@@ -14,27 +15,33 @@ componentWillMount () {
     })
 }
 sendData(){
-    if(this.state.name === '' || this.state.total === '' || this.state.date==='' || this.state.quantity ===''){
-        alert("Please Fill All the Details")
-    }
-    else{
+
     let obj = {
+        type:this.state.type,
         name: this.state.name,
         date: this.state.date,
-        quantity: this.state.quantity,
+        count: this.state.quantity,
         rate: this.state.rate,
-        total: this.state.total
+        total: this.state.total,
+        studentID: this.props.params.sid,
+        courseID : this.props.params.cid
     }
-    console.log(ipcRenderer.sendSync('addcourse', obj)) 
- hashHistory.push('/viewstudent/123')
+    const txnID= ipcRenderer.sendSync('addtransaction', obj)
+    console.log(txnID)
+ hashHistory.push(`/viewstudent/${this.props.params.sid}/${this.props.params.cid}`)
     }
-}
+
 
 render(){
     return (<div className="container">
          <button className="buttons" onClick={() => hashHistory.push('/')}>Home</button>
     <h1>Add Purchase</h1>
     <div className="addPurchaseForm">
+         <select className="selectField" onChange={e => this.setState({type:e.target.value})}>
+            <option value="purchase" > Purchase </option>
+            <option value="laundry" > Laundry </option>
+        </select>
+        <br/>
         <input type="text" className="inputText" placeholder="Name" name="coursename" onChange={e => this.setState({name : e.target.value})} />
         <br/>
         <input type="date" className="inputText" placeholder="Date" name="coursestartdate" onChange={e => this.setState({date : e.target.value})}/>

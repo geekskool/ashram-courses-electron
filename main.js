@@ -44,3 +44,12 @@ ipcMain.on('addstudent', (event, arg) => {
   const studentID = pers.addStudent(arg.courseID, arg)
   event.returnValue = studentID
 })
+
+ipcMain.on('addtransaction', (event, arg) => {
+  const txnID = pers.addPurchase(arg.courseID,arg.studentID, arg)
+  event.returnValue = txnID
+})
+ipcMain.on('getpurchases',(event,arg) => {
+  const purchases = pers.getStudentPurchases(arg.courseID, arg.studentID)
+  event.returnValue = purchases
+})

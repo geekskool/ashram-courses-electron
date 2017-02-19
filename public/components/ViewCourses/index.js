@@ -12,11 +12,7 @@ componentWillMount(){
 handleClick(e){
     hashHistory.push('/dashboard/'+e)
 }
-showCourses(){
-    console.log(this.state.courses)
-    const that = this
-    
-}
+
 render(){
     return (<div className="container">
      <button className="buttons" onClick={() => hashHistory.push('/')}>Home</button>
@@ -33,7 +29,7 @@ render(){
     </thead>
     <tbody>
     {this.state.courses.map(function(crs){
-        return (<h1 onClick={()=> hashHistory.push(`/dashboard/${crs.courseID}`)}>{crs.courseID}</h1>)
+        return (<tr onClick={()=> hashHistory.push(`/dashboard/${crs.courseID}`)}>{crs.courseID}</tr>)
 
 })}
     </tbody>

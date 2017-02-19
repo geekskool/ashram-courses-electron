@@ -18,8 +18,8 @@ render(<Router history={hashHistory}>
     <Route path='/viewcourses' component={ViewCourses} />
     <Route path='/dashboard/:id' component={Dashboard} />
     <Route path='/addstudent/:id' component={AddStudent} />
-    <Route path='/viewstudent/:id' component={ViewStudent} />
-    <Route path='/addpurchase' component={AddPurchase} />
+    <Route path='/viewstudent/:sid/:cid' component={ViewStudent} />
+    <Route path='/addpurchase/:cid/:sid' component={AddPurchase} />
     </Router>
     ,
 document.getElementById('app'))
