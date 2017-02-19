@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import { IndexLink, Link ,hashHistory} from 'react-router'
-import { Button } from 'react-desktop/windows';
 import {ipcRenderer} from 'electron'
 
 export default class AddCourse extends Component {
@@ -42,9 +41,7 @@ render(){
         <br/> 
         <input type="number" className="inputText" min="0" placeholder="Deposit" onChange={e => this.setState({deposit : e.target.value})}/>
         <br/>
-         <Button push color='#3498db' className="selectField" onClick={this.sendData.bind(this)}>
-    Submit
-    </Button>     
+            <button className="buttons selectField" onClick={this.sendData.bind(this)}>Add Student</button>    
     </div>
     </div>)
 }

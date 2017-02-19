@@ -1,22 +1,13 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import { IndexLink, Link,hashHistory } from 'react-router'
-import { ProgressCircle ,Button} from 'react-desktop/windows';
 
 export default class ViewStudent extends Component {
 
 render(){
     return (<div className="container">
-    <Button push color='#3498db' onClick={() => hashHistory.push('/')}>
-    Home
-    </Button>    
-    <Button push color='#3498db' onClick={() => hashHistory.push('/dashboard/123')}>
-    Back
-    </Button>
-{/*<ProgressCircle
-        color={'#cc7f29'}
-        size={100}
-      />   */}
+    <button className="buttons" onClick={() => hashHistory.push('/')}>Home</button>
+    <button className="buttons" onClick={() => hashHistory.push('/dashboard/123')}>Back</button>
     <div className="tablelist">
     <table style={{width:'100%'}}>
     <thead>
@@ -56,9 +47,7 @@ render(){
     </table>
     </div>
     <br/>
-    <Button push color='#3498db' onClick={() => hashHistory.push('/addpurchase')}>
-    Add Purchase
-    </Button> 
+    <button className="buttons" onClick={() => hashHistory.push('/addpurchase')}>Add Purchase</button>
     </div>)
 }
 }

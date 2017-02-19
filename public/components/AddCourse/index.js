@@ -13,18 +13,19 @@ componentWillMount () {
     })
 }
 sendData(){
-    if(this.state.coursename === '' || this.state.courseduration === '' || this.state.coursestartdate==='' || this.state.description===''){
+    if(this.state.coursename === '' || this.state.courseduration === '' || this.state.coursestartdate===''){
         alert("Please Fill All the Details")
     }
     else{
     let obj = {
-        coursename: this.state.coursename,
-        startdate: this.state.coursestartdate,
+        name: this.state.coursename,
+        startDate: this.state.coursestartdate,
         duration: this.state.courseduration,
         description: this.state.description
     }
-    console.log(ipcRenderer.sendSync('addcourse', obj)) 
- hashHistory.push('/dashboard/1234')
+    const courseID = ipcRenderer.sendSync('addcourse', obj) 
+    console.log(courseID)
+    hashHistory.push(`/dashboard/${courseID}`)
     }
 }
 

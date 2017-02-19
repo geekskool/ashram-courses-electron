@@ -6,25 +6,27 @@ import {ipcRenderer} from 'electron'
 export default class AddPurchase extends Component {
 componentWillMount () {
     this.setState({
-        coursename: '',
-        courseduration: '',
-        coursestartdate: '',
-        description: ''
+        name: '',
+        total: '',
+        date: '',
+        quantity: '',
+        rate:''
     })
 }
 sendData(){
-    if(this.state.coursename === '' || this.state.courseduration === '' || this.state.coursestartdate==='' || this.state.description===''){
+    if(this.state.name === '' || this.state.total === '' || this.state.date==='' || this.state.quantity ===''){
         alert("Please Fill All the Details")
     }
     else{
     let obj = {
-        coursename: this.state.coursename,
-        startdate: this.state.coursestartdate,
-        duration: this.state.courseduration,
-        description: this.state.description
+        name: this.state.name,
+        date: this.state.date,
+        quantity: this.state.quantity,
+        rate: this.state.rate,
+        total: this.state.total
     }
     console.log(ipcRenderer.sendSync('addcourse', obj)) 
- hashHistory.push('/dashboard/1234')
+ hashHistory.push('/viewstudent/123')
     }
 }
 
@@ -32,14 +34,16 @@ render(){
     return (<div className="container">
          <button className="buttons" onClick={() => hashHistory.push('/')}>Home</button>
     <h1>Add Purchase</h1>
-    <div className="addCourseForm">
-        <input type="text" className="inputText" placeholder="Course Name" name="coursename" onChange={e => this.setState({coursename : e.target.value})} />
+    <div className="addPurchaseForm">
+        <input type="text" className="inputText" placeholder="Name" name="coursename" onChange={e => this.setState({name : e.target.value})} />
         <br/>
-        <input type="number" className="inputText" min="1" max="15" placeholder="Duration" name="courseduration" onChange={e => this.setState({courseduration : e.target.value})} />
+        <input type="date" className="inputText" placeholder="Date" name="coursestartdate" onChange={e => this.setState({date : e.target.value})}/>
         <br/>
-        <input type="date" className="inputText" placeholder="Start Date" name="coursestartdate" onChange={e => this.setState({coursestartdate : e.target.value})}/>
+        <input type="number" className="inputText" min="1" placeholder="Quantity" name="courseduration" onChange={e => this.setState({quantity : e.target.value})} />
         <br/>
-        <input type="text" className="inputText" placeholder="Description" name="description" onChange={e => this.setState({description : e.target.value})}/>
+        <input type="number" className="inputText" min="1" placeholder="Rate" name="courseduration" onChange={e => this.setState({rate : e.target.value})} />
+        <br/>
+        <input type="text" className="inputText" placeholder="Total" name="description" onChange={e => this.setState({total : e.target.value})}/>
         <br/>
     <button className="buttons" onClick={this.sendData.bind(this)}>Submit</button>     
     </div>

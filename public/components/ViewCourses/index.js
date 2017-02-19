@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import { IndexLink, Link,hashHistory } from 'react-router'
-import { ProgressCircle ,Button} from 'react-desktop/windows';
 
 export default class ViewCourses extends Component {
 handleClick(e){
@@ -10,13 +9,7 @@ handleClick(e){
 
 render(){
     return (<div className="container">
-         <Button push color='#3498db' onClick={() => hashHistory.push('/')}>
-    Home
-    </Button>
-{/*<ProgressCircle
-        color={'#cc7f29'}
-        size={100}
-      />   */}
+     <button className="buttons" onClick={() => hashHistory.push('/')}>Home</button>
     <div className="tablelist">
     <table style={{width:'100%'}}>
     <thead>
@@ -54,9 +47,6 @@ render(){
     </tbody>
     </table>
     </div>
-    <Button push color='#3498db' onClick={() => hashHistory.push('/addcourse')}>
-    Add Course
-    </Button>
     </div>)
 }
 }

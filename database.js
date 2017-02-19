@@ -1,12 +1,14 @@
+const uuid = require('uuid')
 class DB {
     constructor(){
 	this.db = {}
     }
 
     addCourse(course){
-	let {name} = course
-	this.db[name] = course
-	return name
+	let courseID = uuid.v4()
+	course.courseID = courseID
+	this.db[courseID] = course
+	return courseID
     }
 
     getCourse(courseID){

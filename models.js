@@ -1,9 +1,11 @@
 const newCourse = () => ({
+    courseID: "",
     name : "",
     duration : 0,
     students : {},
     startDate : "",
-    endDate : ""
+    endDate : "",
+    description : ""
 })
 
 const newStudent = () => ({

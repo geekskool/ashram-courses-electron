@@ -1,7 +1,8 @@
 const {app, BrowserWindow,ipcMain} = require('electron')
 const path = require('path')
 const url = require('url')
-
+const pers = require("./persistance")
+pers.init()
 let win
 
 function createWindow (){
@@ -24,6 +25,6 @@ app.on('window-all-closed', () => {
 })
 
 ipcMain.on('addcourse', (event, arg) => {
-  console.log(arg)
-  event.returnValue = 'pong'
+  const courseID = pers.createCourse(arg)
+  event.returnValue = courseID
 })
