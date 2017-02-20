@@ -1,20 +1,24 @@
 const newCourse = () => ({
+    courseID: "",
     name : "",
     duration : 0,
     students : {},
     startDate : "",
-    endDate : ""
+    endDate : "",
+    description : ""
 })
 
 const newStudent = () => ({
+    studentID: "",
     name : "",
     new : true,
     deposit : 0,
-    transactions : [],
+    transactions : {},
     roomNo : ""
 })
 
 const newTransaction = () => ({
+    txnID: "",
     type : "",
     name : "",
     count : 1,

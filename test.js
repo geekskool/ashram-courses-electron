@@ -54,3 +54,6 @@ db.addStudentTransaction(cID, stID1, t2)
 const st1 = db.getStudentTransactions(cID, stID1)
 db.print("trans")
 console.log(st1)
+
+const css = db.getCourses()
+console.log(css)

@@ -1,40 +1,62 @@
-const init = () => console.log("Starting persistance")
+const database = require('./database')
+const models = require('./models')
 
-const createCourse = function(course){
-    // insergt course into db
-    console.log("course created successfully")
-    return 1234
+let db
+
+const init = () => {
+    console.log('Starting persistance')
+    db = database.init()
+}
+const createCourse = function (course) {
+  const crs = models.newCourse()
+  crs.name = course.name
+  crs.duration = course.duration
+  crs.description = course.description
+  crs.startDate = course.startDate
+  // insergt course into db
+  const courseID = db.addCourse(crs)
+  return courseID
 }
 
-const getStudents = function(courseID) {
-    //get students of courseID
-    console.log("getting students ...")
-    console.log("got courseID ",courseID )
-    return [1,2,3]
-    
+const getCourses = function(){
+    return db.getCourses()
 }
 
-const addStudents = function(courseID, student){
-    // add student to db
-    console.log("successfully added student")
-    return true
-    
+const getStudents = function (courseID) {
+  return db.getStudents(courseID)
 }
 
-const getStudentPurchases = function(studentID){
-    //get all purchases for studentID
-    return [1,2,3,4]
+const addStudent = function (courseID, student) {
+  const st = models.newStudent()
+    st.name = student.name
+    st.deposit = student.deposit,
+    st.roomNo = student.roomNo
+  const studentID = db.addStudent(courseID,st)
+  return studentID
 }
 
-const addStudentPurchase = function(studentID, purchase){
-    // add purchase to student with studentID
+const getStudentPurchases = function (courseID, studentID) {
+  return db.getStudentTransactions(courseID, studentID)
+}
+
+const addPurchase = function (courseID, studentID, purchase) {
+  const txn = models.newTransaction()
+  txn.type = purchase.type
+  txn.name = purchase.name
+  txn.date = purchase.date
+  txn.count = purchase.count
+  txn.rate = purchase.rate
+  txn.total = purchase.total
+  const txnID = db.addStudentTransaction(courseID, studentID, txn)
+  return txnID
 }
 
 module.exports = {
-    "init" : init,
-    "createCourse" : createCourse,
-    "getStudents" : getStudents,
-    "addStudents" : addStudents,
-    "getStudentPurchases" : getStudentPurchases,
-    "addStudentPurchase" :addStudentPurchase
+  'init': init,
+  'createCourse': createCourse,
+  'getStudents': getStudents,
+  'addStudent': addStudent,
+  'getStudentPurchases': getStudentPurchases,
+  'addPurchase': addPurchase,
+  'getCourses' : getCourses
 }
